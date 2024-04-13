@@ -205,7 +205,6 @@ def main():
                     continue
                 if not file_name:
                     print('Нельзя создать файл с пустым названием')
-                    file_name = input('Введите название новой папки: ')
                     continue
                 break
             print('Введите содержимое файла (чтобы закончить ввод, введите пустую строку (enter))')

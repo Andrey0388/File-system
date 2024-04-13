@@ -100,18 +100,18 @@ def search(file_name):
 
 def menu(key):
     print('Список доступных команд:')
-    print('-1. Остановить файловую систему')
-    print('0. Выйти')
-    print('1. Посмотреть содержимое папки или файла')
-    print('2. Вернуться назад')
-    print('3. Поиск файла по имени')
+    print('1. Остановить файловую систему')
+    print('2. Выйти')
+    print('3. Посмотреть содержимое папки или файла')
+    print('4. Вернуться назад')
+    print('5. Поиск файла по имени')
     if key == 2:
-        print('4. Создать новую папку')
-        print('5. Создать новый файл')
-        print('6. Удалить файл или папку')
-        print('7. Переместить файл или папку')
-        print('8. Редактировать файл или папку')
-        print('9. Сортировать файлы')
+        print('6. Создать новую папку')
+        print('7. Создать новый файл')
+        print('8. Удалить файл или папку')
+        print('9. Переместить файл или папку')
+        print('10. Редактировать файл или папку')
+        print('11. Сортировать файлы')
 
 
 def files_conclusion():
@@ -152,7 +152,7 @@ def main():
         menu(key)
         print()
         command = input('Введите команду (номер команды): ')
-        if command == '1':
+        if command == '3':
             if len(folder.data) == 0:
                 print('Файлов и папок для открытия нет!')
                 print('Создайте новый файл или папку, чтобы воспользоваться данной функцией.')
@@ -181,7 +181,7 @@ def main():
                     break
                 print('Введён неверный номер файла или папки!')
                 file_number = input('Выберите файл или папку для открытия (0 для возврата): ')
-        elif command == '4' and key == 2:
+        elif command == '6' and key == 2:
             print()
             folder_name = input('Введите название новой папки: ')
             while True:
@@ -196,7 +196,7 @@ def main():
                 break
             folder.append(Folder(folder_name, folder))
             print(f'Успешно создана папка {folder_name}')
-        elif command == '5' and key == 2:
+        elif command == '7' and key == 2:
             print()
             while True:
                 file_name = input('Введите название нового файла: ')
@@ -216,7 +216,7 @@ def main():
                 content = input()
             folder.append(File(file_name, file_content, folder))
             print(f'Успешно создан файл {file_name}')
-        elif command == '6' and key == 2:
+        elif command == '8' and key == 2:
             print()
             files_conclusion()
             print()
@@ -230,7 +230,11 @@ def main():
                 continue
             else:
                 print('Введён неверный номер файла или папки!')
-        elif command == '7' and key == 2:
+        elif command == '9' and key == 2:
+            if len(folder.data) == 0:
+                print('Файлов и папок для открытия нет!')
+                print('Создайте новый файл или папку, чтобы воспользоваться данной функцией.')
+                continue
             print()
             files_conclusion()
             print()
@@ -248,12 +252,12 @@ def main():
                     else:
                         print(f'Папки с названием {folder_name} не существует')
                 elif file_number == '0':
-                    continue
+                    break
                 else:
                     print('Введён неверный номер файла или папки!')
                     continue
                 break
-        elif command == '8' and key == 2:
+        elif command == '10' and key == 2:
             print()
             if len(folder.data) == 0:
                 print(
@@ -294,7 +298,7 @@ def main():
                     print('Введён неверный номер файла или папки!')
                     continue
                 break
-        elif command == '3':
+        elif command == '5':
             while True:
                 file_name = input('Введите название файла который вы хотите найти (0 для возврата): ')
                 file = search(file_name)
@@ -322,7 +326,7 @@ def main():
                     break
                 else:
                     print('Такой файл не найден.')
-        elif command == '9' and key == 2:
+        elif command == '11' and key == 2:
             print()
             print('Способы сортировки (0 для возврата): ')
             print('1. По алфавиту, по возрастанию')
@@ -348,16 +352,16 @@ def main():
 
                 print(f'Успешно отсортирована папка {folder.name}')
                 break
-        elif command == '2':
+        elif command == '4':
             if folder.folder is not None:
                 folder = folder.folder
                 print(f'Успешно открыта папка {folder.name}')
             else:
                 print('Из корневой папки нельзя вернуться назад')
-        elif command == '0':
+        elif command == '2':
             main()
             return
-        elif command == '-1':
+        elif command == '1':
             return
         else:
             print('Выбран некорректный номер команды!')
